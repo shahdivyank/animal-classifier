@@ -44,7 +44,17 @@ export default function Home() {
 
     const data = await response.json();
 
-    setResult(data);
+    const split = data.split("_");
+
+    setResult({ name: split[0], confidence: split[1] });
+  };
+
+  const handleClear = () => {
+    setImage(null);
+    setResult({
+      name: "",
+      confidence: "",
+    });
   };
 
   return (
@@ -65,13 +75,17 @@ export default function Home() {
         )}
         <Input
           image={image}
-          setImage={setImage}
+          onClick={handleClear}
           type="file"
           onChange={handleInput}
           accept=".png,.jpeg,.jpg,.webp"
         />
-
-        {result}
+        <p className="text-xl font-semibold mt-4">
+          Predicted Class: {result.name ?? "N/A"}
+        </p>
+        <p className="text-xl">
+          Confidence: {`${result.confidence ?? "N/A"}%`}
+        </p>
       </div>
     </div>
   );

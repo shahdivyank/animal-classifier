@@ -2,7 +2,7 @@ import { BsUpload } from "react-icons/bs";
 import { FaTimes } from "react-icons/fa";
 import Button from "./Button";
 
-const Input = ({ type, onChange, accept, image, setImage }) => {
+const Input = ({ type, onChange, accept, image, onClick }) => {
   return (
     <>
       <label
@@ -31,11 +31,7 @@ const Input = ({ type, onChange, accept, image, setImage }) => {
       </label>
 
       {image && (
-        <Button
-          text="Clear Selection"
-          Icon={FaTimes}
-          onClick={() => setImage(null)}
-        />
+        <Button text="Clear Selection" Icon={FaTimes} onClick={onClick} />
       )}
     </>
   );
